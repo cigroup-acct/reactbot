@@ -1,0 +1,18 @@
+{
+  "name": "reactbot",
+  "version": "1.0.0",
+  "description": "this is an ai bot that uses nlp",
+  "main": "index.js",
+  "engines":{
+    "node": "12.18.3",
+    "npm":"6.14.10"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "John Odey",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
