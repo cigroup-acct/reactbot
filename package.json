@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "this is an ai bot that uses nlp",
   "main": "index.js",
-  "engines":{
+  "engines": {
     "node": "12.18.3",
-    "npm":"6.14.10"
+    "npm": "6.14.10"
   },
   "scripts": {
     "start": "node index.js",
@@ -14,6 +14,7 @@
   "author": "John Odey",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.1"
   },
   "Devdependencies": {
