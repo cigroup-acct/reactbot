@@ -1,6 +1,8 @@
 module.exports = {
-    googleProjectID: 'lisa-99fn',
-    dialogFlowSessionID: 'reactbot-session',
-    dialogFlowSessionLanguageCode: 'en-US',
-    
+    googleProjectID: "reacttestbot-knqn",
+    dialogFlowSessionID: "bot-session",
+    dialogFlowSessionLanguageCode: "en-US",
+    googleClientEmail: "dialogflowbot@reacttestbot-knqn.iam.gserviceaccount.com",
+    googlePrivateKey: "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQD2PBPDIktFCMl/\nBWysRrwjUU8MT88BzZ8NvmKygvEMfrMHtmJ0JsbgRt432EPyxm5leFuQbaKfiTEs\nh/tK2BsIdERWFaap6kV0Q3fa+LDKveDpkMsEZ6UabQNtEmqor9bCmEtY1is8r9/F\n8d14UsC8OcMf6jY8bCUzwDBmBQ/S7AMa7yvb9IT+iGURbIlewstfM5Uuc2D8EUwD\nZd9bMSlVY1CEXzKbj8qwALYPZTJch8wg1sYsydmSHgqF2RGWkcFrMG5PWrfDwBwy\nEkdz7S0oX+hWYKniQpllQc1r5DUfdtQG7iEW1/e7GVXsFkYUPsAmOkJMPjyXLUsj\nqLYCDxI/AgMBAAECggEAM+4QpuctI6aKREkjFaQnWnVz699LA5DXegEMdKRr7Nwt\nqrM6yU9CQxt/Exz/m4xgzPKYsPmGQgoffkpBY5P3A43tuZAAYbZgJnhyJxKqyl9I\nN0oLnuay6cNS5SZsqx3Gd6zBuz8TyE05LthnAlDFiAzQi4MMJCsUn3jpXCK2Jx+o\nUFY1IKerOoxQjGDW0oereGLUNUvXIRYtUy+GeBUDeGM0Qmw6bcu+Fi5Zc/7oZ6Oh\nsbGsNDNUCBDoyesuLj1O8qPvlcXCs3xxAOLOIQ8qU67nVDzy5DUnal7wUK1XESTv\nPEXzc0HcOIf7TjucTjCiVlsPCAmKRTjjn2Jx+zCMBQKBgQD+16fwP0CKCUEcwz2g\nVPRL1eVtXL5euK/WBkCtKkaLZ9T1IiVES8/zlsJPYA8ja/Ve3doqFeT5NtTSjsFm\nIhz22xHDdrhp3VfswAg9oPT4sdBy//23dd1yQk9pJ5gCmnRxqssUIwtVYbuQuU4l\nfOdhjd77s64fp9qhm5Ba48oHywKBgQD3WmljSdvG1WRqYc8qw/0Up6XYeBtMF7zN\nmY5VI82l0fIth8xSPI67TtaEy4nNENrcEmzFUksHiqNlH+yrXSDM5c3aLyvIibrs\nNtsrI2B1Frb3G7j852XkN29KWkCgO/DFq5n+b8UMxLva66jJoBzNiDUYU5hu0w46\nD9vzCDgI3QKBgDIlfYZo6+o9p/Jg+N9z2B6UGHFMrqk07mTPFir9BqSn6d/SuEKY\nKHNmVxYHcPMna0Efpq5hYI0pnPdR3/yY+doZgYVU9zTduU98+iImag4F716xwNs4\n9jplkfq/L8pTWlaDpTJxMum6MY5o6Fe4HE+1+wrMcJcKEJt8YQuBh1/BAoGBAIXA\nf+hOkecMkMXtqcZoQDuhA87v82LMGy3Z8NsdByC5TAlOuy9ky5GBagJYxWT7zjze\nQa7ZdvTXBM+z2Zg4PXpOcWefxj8kKs18RDspYAkwhTNN7FPlFHW5fBZqgzOh9eoN\nhrHM4nKrFyGj+Js+VxTUqFFFMtIKklDXLopWUWaJAoGAXlnu/grWmf2IjDK48jR1\nfyEYOXM3R9mzziAUxR4Ly0qFDdZeHLDakzZbph6xWVT7eIjfRaOeI/cm2EbKVKtv\nRtrS7NiSOrhn4rhymliA1eLZwmpO6x7usk06Os2A3oHLQGAllHEkivudv1SEWNo3\nOeie6uwu9XPBkj1VR357vDM=\n-----END PRIVATE KEY-----\n",
+    mongoURI:''
 }
