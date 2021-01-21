@@ -2,5 +2,5 @@
 .vscode
 config
 
-dev.js
+keys.js
 ./config/keys.js
