@@ -3,4 +3,4 @@
 config
 
 dev.js
-./config/dev.js
+./config/keys.js
