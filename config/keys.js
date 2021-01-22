@@ -1,4 +1,4 @@
-if (process.env.NODE_ENVIRONMENT == "development") {
+if (process.env.NODE_ENV == "development") {
     module.export = require("./dev");
 }
 else {
