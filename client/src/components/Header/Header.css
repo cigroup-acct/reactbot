@@ -1,0 +1,26 @@
+/* .top-head {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  z-index: 2;
+  top: 0;
+  height: 60px;
+}
+
+.top-head-container {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  flex: 1 0 0;
+}
+
+.top-head-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+}
+
+.top-head-info {
+  display: inline-block;
+  margin-left: 12px;
+} */
