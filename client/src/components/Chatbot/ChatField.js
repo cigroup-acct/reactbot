@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios/index';
 import './ChatField.css';
-
+import { Button } from 'react-bootstrap';
 
 class Chatbot extends Component{
   constructor(props) {
@@ -50,8 +50,15 @@ class Chatbot extends Component{
   render() {
     return (
       <div className="chatfield">
-          <h4>Chatbot</h4>
-          <input type="text" className="input"/>
+        <h4>Chatbot</h4>
+        <div className="input-wrapper">
+
+          <input type="text" className="input" />
+          
+          <Button variant="dark">Dark</Button>
+        </div>
+        
+        
       </div>
     )
   }
