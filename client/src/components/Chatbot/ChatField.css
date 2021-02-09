@@ -1,18 +1,27 @@
+.chatfield {
+  position: relative;
+  height: 78vh;
+  width: 80vw;
+  border: 1px solid red;
+  margin: 10px auto;
+  padding: 20px;
+  overflow: auto;
+}
 .input-wrapper {
-  position: fixed;
-  display: inline-flex;
+  position: absolute;
   bottom: 10px;
-  width: 100%;
-  /* height: 40px; */
-  border-radius: 50px;
   background-color: transparent;
-  border: 1px solid #f9f0f0;
-  padding: 10px;
 }
 
 .input {
   border: 0px;
-  width: 80%;
+  /* width: 100%; */
   height: 100%;
+  border-radius: 50px;
+  margin: 10px auto;
+  border: 1px solid #f9f0f0;
+  padding: 10px;
+  width: 80%;
   background-color: transparent;
+  /* height: 40px; */
 }

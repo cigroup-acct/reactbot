@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios/index';
-import './ChatField.css';
-import { Button } from 'react-bootstrap';
+import Message from './Message';
 
-class Chatbot extends Component{
+import './ChatField.css';
+
+class ChatField extends Component{
   constructor(props) {
     super(props);
     this.state = {
@@ -12,7 +13,7 @@ class Chatbot extends Component{
   }
 
   async df_text_query(text) {
-    let says = {
+    let content = {
       who: 'me',
       msg: {
         text: {
@@ -22,16 +23,16 @@ class Chatbot extends Component{
 
     };
 
-    this.setState({ messages: [...this.state.messages], says });
+    this.setState({ messages: [...this.state.messages], content });
 
     const res = await axios.post('/api/df_text_query', { text: text });
 
     for (let msg of res.data.fulfillmentMessages) {
-      says = {
+      content = {
         who: 'Bot',
         msg: msg
       }
-      this.setState({ messages: [...this.state.messages], says });
+      this.setState({ messages: [...this.state.messages], content});
     }
   } 
 
@@ -39,24 +40,57 @@ class Chatbot extends Component{
     const res = await axios.post('/api/df_event_query', { event });
 
     for (let msg of res.data.fulfillmentMessages) {
-      let says = {
-        who: 'me',
+      let content = {
+        who: 'bot',
         msg:msg
-      }
-      this.setState({ messages: [...this.state.messages], says })
+      };
+      this.setState({ messages: [...this.state.messages, content] });
+      console.log(this.state.messages);
+    }
+  }
+
+  renderMessage(stateMessages) {
+    if (stateMessages) {
+      return stateMessages.map((message, i) => {
+        return <Message key = {i} who={message.who} text={message.msg.text.text} />;
+      }); 
+    }
+    else {
+      return null;
+    }
+  }
+
+  componentDidMount() {
+    this.df_event_query('Welcome');
+  }
+
+  _handleInputKeyPress(e) {
+    if (e.key === 'Enter') {
+      this.df_text_query(e.target.valur);
+      e.target.value = "";
     }
   }
 
   render() {
     return (
-      <div className="chatfield">
+      <div >
         <h4>Chatbot</h4>
-        <div className="input-wrapper">
+        
+        
+        <div className="chatfield">
+          <div>
+            {this.renderMessage(this.state.messages)}
 
-          <input type="text" className="input" />
+          </div>
+          <div className="input-wrapper">
+            <input type="text" className="input" /> 
+          </div>
           
-          <Button variant="dark">Dark</Button>
         </div>
+          
+        
+          
+       
         
         
       </div>
@@ -65,4 +99,4 @@ class Chatbot extends Component{
 } 
   
 
-export default Chatbot;
+export default ChatField;

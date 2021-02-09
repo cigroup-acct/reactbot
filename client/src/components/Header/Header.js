@@ -7,9 +7,7 @@ const Header = () => {
     <div>
         <header className="top-head">
             <div className="top-head-container">
-                <h2>
-                    Logo        
-                </h2>
+          <img src="https://www.talkwalker.com/images/2020/blog-headers/image-recognition-green-kitkat.jpg" alt="logo" style={{ display: 'flex', justifyContent: 'center', width: '100px' }}/>
             </div>
         </header>
     </div>
