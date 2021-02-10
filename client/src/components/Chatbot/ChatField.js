@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios/index';
 import Cookies from 'universal-cookie';
 import { v4 as uuid } from 'uuid';
+
 import Message from './Message';
+import Card from './Card';
 
 import './ChatField.css';
 
@@ -60,14 +62,46 @@ class ChatField extends Component{
 
       this.setState({ messages: [...this.state.messages, content] });
       console.log(this.state.messages);
-      
+
+    }
+  }
+
+  
+
+  renderCards(cards) {
+    return cards.map((card, i) => <Card key={i} payload={card.structValue} />);
+  }
+
+  renderOneMessage(message, i) {
+    if (message.msg && message.msg.text && message.msg.text.text) {
+      return <Message key = {i} who={message.who} text={message.msg.text.text} />;
+    }
+    else if(message.msg && message.msg.payload && message.msg.payload.fields && message.msg.payload.fields.cards ) {
+      return <div key={i}>
+        <div className="card-panel">
+          <div style={{ overflow: 'hidden' }}>
+            <span>
+              {message.who}
+            </span>
+
+            <div >
+             <div style={{ height: 300, width: 500, overflow: 'auto', overflowX: 'scroll', display: 'flex'}}>
+                
+                {this.renderCards(message.msg.payload.fields.cards.listValue.values)}
+                
+             </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     }
   }
 
   renderMessage(stateMessages) {
     if (stateMessages) {
       return stateMessages.map((message, i) => {
-        return <Message key = {i} who={message.who} text={message.msg.text.text} />;
+        return this.renderOneMessage(message, i);
       }); 
     }
     else {
@@ -96,7 +130,6 @@ class ChatField extends Component{
     return (
       <div >
         <h4>Chatbot</h4>
-        
         
         <div className="chatfield">
           <div>
