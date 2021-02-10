@@ -1,51 +1,66 @@
 import React, { Component } from 'react';
 import axios from 'axios/index';
+import Cookies from 'universal-cookie';
+import { v4 as uuid } from 'uuid';
 import Message from './Message';
 
 import './ChatField.css';
 
+
+const cookies = new Cookies();
+
 class ChatField extends Component{
+  messagesEnd;
   constructor(props) {
     super(props);
+    this._handleInputKeyPress = this._handleInputKeyPress.bind(this);
     this.state = {
-      messages:[]
+      messages: []
+    };
+    if (cookies.get('userID') === undefined) {
+      cookies.set('userID', uuid(), { path:'/' })
     }
+    console.log(cookies.get('userID'));
   }
 
-  async df_text_query(text) {
+  async df_text_query(queryText) {
     let content = {
       who: 'me',
       msg: {
         text: {
-          text: text
+          text: queryText
         }
       }
 
     };
 
-    this.setState({ messages: [...this.state.messages], content });
+    this.setState({ messages: [...this.state.messages, content ]});
 
-    const res = await axios.post('/api/df_text_query', { text: text });
+    const res = await axios.post('/api/df_text_query', { text: queryText, userID: cookies.get('userID') });
 
     for (let msg of res.data.fulfillmentMessages) {
       content = {
-        who: 'Bot',
+        who: 'bot',
         msg: msg
       }
-      this.setState({ messages: [...this.state.messages], content});
+      this.setState({ messages: [...this.state.messages, content]});
     }
   } 
 
-  async df_event_query(event) {
-    const res = await axios.post('/api/df_event_query', { event });
+  async df_event_query(eventName) {
+
+    const res = await axios.post('/api/df_event_query', { event:eventName, userID: cookies.get('userID')  });
 
     for (let msg of res.data.fulfillmentMessages) {
+     
       let content = {
         who: 'bot',
         msg:msg
       };
+
       this.setState({ messages: [...this.state.messages, content] });
       console.log(this.state.messages);
+      
     }
   }
 
@@ -64,10 +79,16 @@ class ChatField extends Component{
     this.df_event_query('Welcome');
   }
 
+  componentDidUpdate() {
+    this.messagesEnd.scrollIntoView({ behaivour: 'smooth'})
+  }
+
   _handleInputKeyPress(e) {
     if (e.key === 'Enter') {
-      this.df_text_query(e.target.valur);
+      console.log(e.target.value);
+      this.df_text_query(e.target.value);
       e.target.value = "";
+     
     }
   }
 
@@ -80,10 +101,13 @@ class ChatField extends Component{
         <div className="chatfield">
           <div>
             {this.renderMessage(this.state.messages)}
-
+            <div ref={(el) => { this.messagesEnd = el;}}
+              style={{ float: 'left', clear: 'both' }} >
+            
+            </div>
           </div>
           <div className="input-wrapper">
-            <input type="text" className="input" /> 
+            <input type="text" onKeyPress={ this._handleInputKeyPress} className="input" /> 
           </div>
           
         </div>

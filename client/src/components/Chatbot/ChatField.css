@@ -8,7 +8,7 @@
   overflow: auto;
 }
 .input-wrapper {
-  position: absolute;
+  position: fixed;
   bottom: 10px;
   background-color: transparent;
 }
