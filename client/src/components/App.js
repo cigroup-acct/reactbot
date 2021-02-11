@@ -9,7 +9,7 @@ import "./App.css";
 const App = () => {
   return (
     <div className="wrapper">
-      <Header/>
+      <Header />
       <ChatField /> 
     </div>
   )

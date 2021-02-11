@@ -1,4 +1,4 @@
-/* .top-head {
+.top-head {
   position: fixed;
   width: 100%;
   display: flex;
@@ -23,4 +23,4 @@
 .top-head-info {
   display: inline-block;
   margin-left: 12px;
-} */
+}

@@ -5,6 +5,7 @@ import { v4 as uuid } from 'uuid';
 
 import Message from './Message';
 import Card from './Card';
+import QuickReplies from './QuickReplies';
 
 import './ChatField.css';
 
@@ -15,10 +16,14 @@ class ChatField extends Component{
   messagesEnd;
   constructor(props) {
     super(props);
+
+    this._handleQuickRepliesPayload = this._handleQuickRepliesPayload.bind(this);
     this._handleInputKeyPress = this._handleInputKeyPress.bind(this);
+    
     this.state = {
       messages: []
     };
+
     if (cookies.get('userID') === undefined) {
       cookies.set('userID', uuid(), { path:'/' })
     }
@@ -76,7 +81,8 @@ class ChatField extends Component{
     if (message.msg && message.msg.text && message.msg.text.text) {
       return <Message key = {i} who={message.who} text={message.msg.text.text} />;
     }
-    else if(message.msg && message.msg.payload && message.msg.payload.fields && message.msg.payload.fields.cards ) {
+
+    else if (message.msg && message.msg.payload && message.msg.payload.fields && message.msg.payload.fields.cards) {
       return <div key={i}>
         <div className="card-panel">
           <div style={{ overflow: 'hidden' }}>
@@ -85,18 +91,32 @@ class ChatField extends Component{
             </span>
 
             <div >
-             <div style={{ height: 300, width: 500, overflow: 'auto', overflowX: 'scroll', display: 'flex'}}>
+              <div style={{ height: 300, width: 500, overflow: 'auto', overflowX: 'scroll', display: 'flex' }}>
                 
                 {this.renderCards(message.msg.payload.fields.cards.listValue.values)}
                 
-             </div>
+              </div>
             </div>
           </div>
         </div>
 
       </div>
     }
+      
+    else if (
+      message.msg && message.msg.payload && message.msg.payload.fields && message.msg.payload.fields.quick_replies
+    )
+    {
+      return <QuickReplies
+        text={message.msg.payload.fields.text ? message.msg.payload.fields.text : null}
+        key={i}
+        replyClick={this._handleQuickReplyPayload}
+        who={message.who}
+        payload={message.msg.payload.fields.quick_replies.listValue.values}
+      />
+    }
   }
+
 
   renderMessage(stateMessages) {
     if (stateMessages) {
@@ -114,7 +134,7 @@ class ChatField extends Component{
   }
 
   componentDidUpdate() {
-    this.messagesEnd.scrollIntoView({ behaivour: 'smooth'})
+    this.messagesEnd.scrollIntoView({ behaivour: 'smooth' });
   }
 
   _handleInputKeyPress(e) {
@@ -126,31 +146,39 @@ class ChatField extends Component{
     }
   }
 
+  _handleQuickRepliesPayload(payload, text) {
+    this.df_text_query(text);
+  }
+
   render() {
-    return (
-      <div >
-        <h4>Chatbot</h4>
-        
-        <div className="chatfield">
-          <div>
-            {this.renderMessage(this.state.messages)}
-            <div ref={(el) => { this.messagesEnd = el;}}
-              style={{ float: 'left', clear: 'both' }} >
-            
+      return (
+          <section id="chatfield">
+            <div className="chat">
+                {this.renderMessage(this.state.messages)}
+                    <div ref={(el) => { this.messagesEnd = el;}}
+                    style={{ float: 'left', clear: 'both' }} ></div>
+                
             </div>
-          </div>
-          <div className="input-wrapper">
-            <input type="text" onKeyPress={ this._handleInputKeyPress} className="input" /> 
-          </div>
-          
-        </div>
-          
+           <div className="chat-field">
+            <div className="chat-field-container">
+                <div className="chat-field-flexible">
+                       
+                    
+                    </div>
+                    <input
+                        onKeyPress={ this._handleInputKeyPress}
+                        className="chat-field-input"
+                        type="text"
+                    />
+
+
+                </div>
+            </div>
+       </section> 
         
           
-       
         
         
-      </div>
     )
   }
 } 

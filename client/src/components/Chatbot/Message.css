@@ -1,0 +1,44 @@
+.rich-component {
+  padding-bottom: 8px;
+  width: 70%;
+  word-break: break-word;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-animation: show-data-v-325a1bc6 0.8s var(--animation-timing) forwards;
+  animation: show-data-v-325a1bc6 0.8s var(--animation-timing) forwards;
+}
+.rich-bubble.me {
+  background-color: #2a2d35;
+  border: 1px solid #2a2d35;
+  color: var(--text-element);
+  border-top-left-radius: 40px;
+}
+.rich-component.me {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+  float: right;
+}
+
+.rich-bubble::before {
+  content: var(--bubble-left);
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-top: -9px;
+  margin-left: -1px;
+}
+
+.rich-bubble.me::before {
+  content: "";
+}
+.rich-bubble.me::after {
+  content: var(--bubble-right);
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-top: -9px;
+  margin-right: -1px;
+}
