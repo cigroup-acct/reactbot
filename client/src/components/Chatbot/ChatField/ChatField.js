@@ -117,6 +117,13 @@ class ChatField extends Component{
     if (messages.length === 0) {
       return <Welcome />;
     }
+    else {
+      return (
+        <div className="fixed-top">
+          <img src="https://res.cloudinary.com/jonddon/image/upload/v1613121688/Lisa/ai-loader-opt_su0br0.gif" alt="logo" style={{ display: 'flex', justifyContent: 'center', width: '150px', margin: 'auto' }} />
+        </div>
+      )
+    }
     
   }
 
@@ -250,6 +257,7 @@ class ChatField extends Component{
           <section id="chatfield">
         <div className="chat">
           {this.renderWelcome(this.state.messages)}
+            
                 {this.renderMessage(this.state.messages)}
                     <div ref={(el) => { this.messagesEnd = el;}}
             style={{ float: 'left', clear: 'both' }} >
