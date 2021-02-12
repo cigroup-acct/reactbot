@@ -1,5 +1,5 @@
 import React from 'react';
-import ChatField from './Chatbot/ChatField';
+import ChatField from './Chatbot/ChatField/ChatField';
 import Header from './Header/Header';
 
 import "./App.css";

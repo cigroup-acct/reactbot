@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import QuickReply from './QuickReply';
 
+
 class QuickReplies extends Component{
     constructor(props) {
         super(props);
         this._handleClick = this._handleClick.bind(this);
     }
-    _handleClick(payload, text) {
-        this.props.replyClick(payload, text);
+    
+    _handleClick(text) {
+        this.props.replyClick(text);
     }
 
     renderQuickReply(reply, i) {
-        return <QuickReply key={i} click={this.handleClick} reply={reply} />;
+        return <QuickReply key={i} click={this._handleClick} reply={reply} />;
     }
 
     renderQuickReplies(quickReplies) {
@@ -30,7 +32,7 @@ class QuickReplies extends Component{
     render() {
         return (
             <div className="quick_replies">
-                <div className="quick_reply">
+                <div className="quick_reply_items">
                     { this.props.text &&
                         <p>
                             {this.props.text.stringValue}

@@ -1,0 +1,7 @@
+.welcome-shown {
+  display: block;
+}
+
+.welcome-hidden {
+  display: none;
+}

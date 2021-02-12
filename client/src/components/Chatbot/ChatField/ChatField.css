@@ -1,8 +1,9 @@
 .chat {
-  max-width: 500px;
+  max-width: 700px;
   height: 100vh;
   margin: auto auto;
-  padding: 70px 12px 112px 12px;
+  padding: 80px 12px 112px 12px;
+  overflow-y: auto;
 }
 
 .chat-field {
@@ -15,7 +16,7 @@
 }
 
 .chat-field-container {
-  max-width: 500px;
+  max-width: 700px;
   margin: auto auto;
   padding: 12px;
 }
@@ -37,5 +38,12 @@
   padding: 10px 0 10px 12px;
   color: var(--text-primary);
   border-radius: 40px;
-  background-color: grey;
+  background-color: #2a2d35;
+}
+.welcome-shown {
+  display: block;
+}
+
+.welcome-hidden {
+  display: none;
 }

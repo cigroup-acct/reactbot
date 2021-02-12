@@ -3,11 +3,15 @@ import axios from 'axios/index';
 import Cookies from 'universal-cookie';
 import { v4 as uuid } from 'uuid';
 
-import Message from './Message';
-import Card from './Card';
-import QuickReplies from './QuickReplies';
+// import Welcome from '../Welcome/Welcome';
+import Message from '../SimpleMessage/Message';
+import Card from '../Cards/Card';
+import QuickReplies from '../QuickReplies/QuickReplies';
+import List from '../List/List';
+import Project from '../Project/Project';
 
-import './ChatField.css';
+import '../ChatField/ChatField.css';
+import Welcome from '../Welcome/Welcome';
 
 
 const cookies = new Cookies();
@@ -17,11 +21,13 @@ class ChatField extends Component{
   constructor(props) {
     super(props);
 
+    
     this._handleQuickRepliesPayload = this._handleQuickRepliesPayload.bind(this);
     this._handleInputKeyPress = this._handleInputKeyPress.bind(this);
     
     this.state = {
-      messages: []
+      messages: [],
+      showingWelcome: true
     };
 
     if (cookies.get('userID') === undefined) {
@@ -71,10 +77,36 @@ class ChatField extends Component{
     }
   }
 
-  
+  handleWelcome() {
+    this.setState({
+      showingWelcome: true
+    });
+
+    setTimeout(() => {
+      this.setState({
+        showingWelcome: false
+      });
+    }, 2000);
+  }
+
+  renderWelcome(messages) {
+    console.log(messages.length);
+    if (messages.length === 0) {
+      return <Welcome />;
+    }
+    
+  }
 
   renderCards(cards) {
     return cards.map((card, i) => <Card key={i} payload={card.structValue} />);
+  }
+
+  renderLists(lists) {
+    return lists.map((list, i) => <List key={i} payload={list.structValue} />);
+  }
+
+  renderProjects(projects) {
+    return projects.map((project, i) => <Project key={i} payload={project.structValue} />);
   }
 
   renderOneMessage(message, i) {
@@ -86,9 +118,6 @@ class ChatField extends Component{
       return <div key={i}>
         <div className="card-panel">
           <div style={{ overflow: 'hidden' }}>
-            <span>
-              {message.who}
-            </span>
 
             <div >
               <div style={{ height: 300, width: 500, overflow: 'auto', overflowX: 'scroll', display: 'flex' }}>
@@ -115,6 +144,34 @@ class ChatField extends Component{
         payload={message.msg.payload.fields.quick_replies.listValue.values}
       />
     }
+
+
+    else if (message.msg && message.msg.payload && message.msg.payload.fields && message.msg.payload.fields.list) {
+      return <div key={i}>
+          
+        <div style={{ overflowY: 'scroll'}}>
+                
+          {this.renderLists(message.msg.payload.fields.list.listValue.values)}
+                
+        </div>
+           
+      </div>;
+
+    }
+
+    else if (message.msg && message.msg.payload && message.msg.payload.fields && message.msg.payload.fields.project) {
+      return <div key={i}>
+          
+        <div style={{ overflowY: 'scroll'}}>
+                
+          {this.renderProjects(message.msg.payload.fields.project.listValue.values)}
+                
+        </div>
+           
+      </div>;
+
+    }
+
   }
 
 
@@ -129,9 +186,9 @@ class ChatField extends Component{
     }
   }
 
-  componentDidMount() {
-    this.df_event_query('Welcome');
-  }
+  // componentDidMount() {
+  //   this.df_event_query('Welcome');
+  // }
 
   componentDidUpdate() {
     this.messagesEnd.scrollIntoView({ behaivour: 'smooth' });
@@ -151,18 +208,25 @@ class ChatField extends Component{
   }
 
   render() {
-      return (
+    return (
+        
           <section id="chatfield">
-            <div className="chat">
+        <div className="chat">
+          {this.renderWelcome(this.state.messages)}
                 {this.renderMessage(this.state.messages)}
                     <div ref={(el) => { this.messagesEnd = el;}}
-                    style={{ float: 'left', clear: 'both' }} ></div>
+            style={{ float: 'left', clear: 'both' }} >
+            
+           
+            </div>
+          
                 
             </div>
            <div className="chat-field">
             <div className="chat-field-container">
                 <div className="chat-field-flexible">
-                       
+                 
+                
                     
                     </div>
                     <input
@@ -185,3 +249,12 @@ class ChatField extends Component{
   
 
 export default ChatField;
+
+
+
+
+
+
+
+
+

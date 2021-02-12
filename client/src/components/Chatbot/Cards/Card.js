@@ -1,13 +1,17 @@
 import React from 'react';
+import './Card.css';
 
 const Card = (props) => {
     return (
-        <div style={{width:270, paddingRight:30}}>
-            <div className="card" style={{ width: "18rem"}}>   
-                <img className="card-img-top" alt={props.payload.fields.header.stringValue} src={props.payload.fields.image.stringValue} />
+        <div style={{width:270, marginRight:30}}>
+            <div className="card bg-dark" style={{ width: "18rem" }}>
+                <div className="card_image_wrapper">
+                    <img className="card_image" alt={props.payload.fields.header.stringValue} src={props.payload.fields.image.stringValue} />
+                </div>
+                
 
                 <div className="card-body">
-                    <h5 className="card-title text-dark">
+                    <h5 className="card-title ">
                         
                         {props.payload.fields.header.stringValue}
                     </h5>
