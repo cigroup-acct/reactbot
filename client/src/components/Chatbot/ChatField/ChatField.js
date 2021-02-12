@@ -166,7 +166,7 @@ class ChatField extends Component{
       return <QuickReplies
         text={message.msg.payload.fields.text ? message.msg.payload.fields.text : null}
         key={i}
-        replyClick={this._handleQuickReplyPayload}
+        replyClick={this._handleQuickRepliesPayload}
         who={message.who}
         payload={message.msg.payload.fields.quick_replies.listValue.values}
       />
