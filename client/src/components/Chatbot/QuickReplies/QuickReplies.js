@@ -7,7 +7,7 @@ class QuickReplies extends Component{
         super(props);
         this._handleClick = this._handleClick.bind(this);
     }
-    
+
     _handleClick(text) {
         this.props.replyClick(text);
     }

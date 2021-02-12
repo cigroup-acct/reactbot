@@ -13,14 +13,14 @@ const List = (props) => {
             </p>
             {
                 props.payload.fields.phone_number.stringValue !=="#" &&
-            <a className="btn btn-primary" style= {{ marginRight:10 } }href={props.payload.fields.phone_number.stringValue} >
+            <a className="btn list-btn" style= {{ marginRight:10 } } href={"tel:" + props.payload.fields.phone_number.stringValue} target="_blank" rel="noreferrer">
                     Call
                 </a>
             }
            
             {
                 props.payload.fields.link.stringValue && 
-                <a className="btn btn-primary" href={props.payload.fields.link.stringValue} rel="noopener" alt={props.payload.fields.title.stringValue} target="_blank">
+                <a className="btn list-btn" href={props.payload.fields.link.stringValue} alt={props.payload.fields.title.stringValue} target="_blank" rel="noreferrer">
                     Get location
                 </a>
             }

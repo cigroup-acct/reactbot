@@ -48,45 +48,67 @@ class ChatField extends Component{
     };
 
     this.setState({ messages: [...this.state.messages, content ]});
+    try {
+      const res = await axios.post('/api/df_text_query', { text: queryText, userID: cookies.get('userID') });
 
-    const res = await axios.post('/api/df_text_query', { text: queryText, userID: cookies.get('userID') });
-
-    for (let msg of res.data.fulfillmentMessages) {
+      for (let msg of res.data.fulfillmentMessages) {
+        content = {
+          who: 'bot',
+          msg: msg
+        }
+        this.setState({ messages: [...this.state.messages, content]});
+      }
+      
+    }
+    catch (e) {
       content = {
         who: 'bot',
-        msg: msg
-      }
-      this.setState({ messages: [...this.state.messages, content]});
+        msg: {
+          text: {
+            text: "I'm having some troubles, Please refresh this page"
+          }
+        }
+
+      };
+      this.setState({ messages: [...this.state.messages, content] });
+      
     }
   } 
 
   async df_event_query(eventName) {
+    try {
+      const res = await axios.post('/api/df_event_query', { event:eventName, userID: cookies.get('userID')  });
 
-    const res = await axios.post('/api/df_event_query', { event:eventName, userID: cookies.get('userID')  });
+      for (let msg of res.data.fulfillmentMessages) {
+      
+        let content = {
+          who: 'bot',
+          msg:msg
+        };
 
-    for (let msg of res.data.fulfillmentMessages) {
-     
-      let content = {
-        who: 'bot',
-        msg:msg
-      };
-
-      this.setState({ messages: [...this.state.messages, content] });
+        this.setState({ messages: [...this.state.messages, content] });
+      
+    }
+    
       console.log(this.state.messages);
 
     }
+    catch (e) {
+      let content = {
+        who: 'bot',
+        msg: {
+          text: {
+            text: "I'm having some troubles, Please refresh this page"
+          }
+        }
+
+      };
+      this.setState({ messages: [...this.state.messages, content] });
+    }
   }
 
-  handleWelcome() {
-    this.setState({
-      showingWelcome: true
-    });
-
-    setTimeout(() => {
-      this.setState({
-        showingWelcome: false
-      });
-    }, 2000);
+   _handleQuickRepliesPayload(payload, text) {
+    this.df_text_query(text);
   }
 
   renderWelcome(messages) {
@@ -203,9 +225,7 @@ class ChatField extends Component{
     }
   }
 
-  _handleQuickRepliesPayload(payload, text) {
-    this.df_text_query(text);
-  }
+ 
 
   render() {
     return (
