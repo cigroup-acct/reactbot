@@ -8,6 +8,7 @@ import Message from '../SimpleMessage/Message';
 import Card from '../Cards/Card';
 import QuickReplies from '../QuickReplies/QuickReplies';
 import List from '../List/List';
+import SimpleList from '../SimpleList/SimpleList';
 import Project from '../Project/Project';
 
 import '../ChatField/ChatField.css';
@@ -127,6 +128,10 @@ class ChatField extends Component{
     return lists.map((list, i) => <List key={i} payload={list.structValue} />);
   }
 
+  renderSimpleLists(items) {
+    return items.map((item, i) => <SimpleList key={i} payload={item.structValue} />);
+  }
+
   renderProjects(projects) {
     return projects.map((project, i) => <Project key={i} payload={project.structValue} />);
   }
@@ -174,6 +179,18 @@ class ChatField extends Component{
         <div style={{ overflowY: 'scroll'}}>
                 
           {this.renderLists(message.msg.payload.fields.list.listValue.values)}
+                
+        </div>
+           
+      </div>;
+
+    }
+    else if (message.msg && message.msg.payload && message.msg.payload.fields && message.msg.payload.fields.simple_list) {
+      return <div key={i}>
+          
+        <div style={{ overflowY: 'scroll'}}>
+                
+          {this.renderSimpleLists(message.msg.payload.fields.simple_list.listValue.values)}
                 
         </div>
            
