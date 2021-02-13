@@ -3,8 +3,11 @@ import './Welcome.css'
 
 const Welcome =() => {
     return (
-            <div>
-            <img src="https://res.cloudinary.com/jonddon/image/upload/v1613121688/Lisa/ai-loader-opt_su0br0.gif" alt="logo" style={{ display: 'flex', justifyContent: 'center', width: '340px', margin: 'auto' }} />
+        <div id="welcome-wrapper">
+            <div className="img-logo">
+                <img className="img-fluid" src="https://res.cloudinary.com/jonddon/image/upload/v1613121688/Lisa/ai-loader-opt_su0br0.gif" alt="logo" />
+            </div>
+            
                 <h1 className="text-center">LISA</h1>
                 <h2 className="text-center">
                     (Lagos Information and Service Assistant)
