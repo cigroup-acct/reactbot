@@ -118,9 +118,9 @@ class ChatField extends Component{
       return <Welcome />;
     }
     else {
-      return (
+      return(
         <div className="fixed-top">
-          <img src="https://res.cloudinary.com/jonddon/image/upload/v1613121688/Lisa/ai-loader-opt_su0br0.gif" alt="logo" style={{ display: 'flex', justifyContent: 'center', width: '150px', margin: 'auto' }} />
+          <img src="https://res.cloudinary.com/jonddon/image/upload/v1613159014/Lisa/loader.gif" alt="logo" style={{ display: 'flex', justifyContent: 'end', width: '80px', margin: 'auto' }} />
         </div>
       )
     }

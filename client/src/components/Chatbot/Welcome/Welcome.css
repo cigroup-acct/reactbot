@@ -5,3 +5,10 @@
 .welcome-hidden {
   display: none;
 }
+
+.welcome {
+  display: "flex" !important;
+  justify-content: "center" !important;
+  width: "400px" !important;
+  margin: "auto" !important;
+}
