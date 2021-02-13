@@ -1,9 +1,12 @@
-#welcome-wrapper {
-  width: "300px" !important;
-}
 .img-logo {
   width: 300px;
   max-width: 400px;
   height: auto;
   margin: auto;
+}
+
+@media only screen and (max-width: 600px) {
+  #welcome-wrapper {
+    padding-top: 70px;
+  }
 }
