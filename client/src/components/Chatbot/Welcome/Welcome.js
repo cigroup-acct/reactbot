@@ -13,7 +13,7 @@ const Welcome =() => {
                     (Lagos Information Service Assistant)
                 </h2>
             <p className="text-center">
-                I'm LISA, your Lagos state virtual assistant. I can provide information on Lagos.. Send 'Hi' to get started. 
+                Welcome, I am LISA, your Lagos virtual assistant. I am here to help you find information on public services 24hrs a day.
             </p>
         </div>
     )
