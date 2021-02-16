@@ -40,10 +40,7 @@
   border-radius: 40px;
   background-color: #2a2d35;
 }
-.welcome-shown {
-  display: block;
-}
-
-.welcome-hidden {
-  display: none;
+.img-logo-small {
+  top: 10;
+  /* height: "20px"; */
 }

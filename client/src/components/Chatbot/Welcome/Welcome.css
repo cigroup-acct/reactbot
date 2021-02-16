@@ -9,4 +9,8 @@
   #welcome-wrapper {
     padding-top: 70px;
   }
+  .img-logo {
+    width: 300px;
+    max-width: 400px;
+  }
 }

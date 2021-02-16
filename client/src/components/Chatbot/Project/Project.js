@@ -3,6 +3,7 @@ import React from 'react';
 import './Project.css';
 
 const Project = (props) => {
+    
     return (
         <div className="project_wrapper">
             <h5 className="title">

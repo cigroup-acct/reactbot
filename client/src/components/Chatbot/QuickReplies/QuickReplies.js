@@ -30,6 +30,8 @@ class QuickReplies extends Component{
 
 
     render() {
+
+        
         return (
             <div className="quick_replies">
                 <div className="quick_reply_items">

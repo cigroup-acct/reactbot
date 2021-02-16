@@ -108,6 +108,14 @@ class ChatField extends Component{
     }
   }
 
+  resolveAfterXseconds(x) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+          resolve(x);
+        }, x * 1000);
+      }); 
+  }
+
    _handleQuickRepliesPayload(payload, text) {
     this.df_text_query(text);
   }
@@ -233,7 +241,7 @@ class ChatField extends Component{
   }
 
   // componentDidMount() {
-  //   this.df_event_query('Welcome');
+    
   // }
 
   componentDidUpdate() {

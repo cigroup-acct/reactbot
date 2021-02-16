@@ -1,6 +1,7 @@
 .quick_reply_btn {
-  background: #2a2d35 !important;
+  background: transparent;
   color: #fff !important;
+  border: 1px solid #f9f9f9 !important;
   border-radius: 40px !important;
   padding: 10px 20px !important;
   margin-bottom: 10px;
