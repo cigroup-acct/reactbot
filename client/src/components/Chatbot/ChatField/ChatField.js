@@ -124,16 +124,20 @@ class ChatField extends Component{
     this.df_text_query(text);
   }
 
-  // renderMenu(messages) {
+  renderMenu(messages) {
    
-  //   if (messages.length >= 1) {
-  //     return (
-  //       <div className="menu">
-          
-  //       </div>
-  //     );
-  //   }
-  // }
+    if (messages.length >= 1) {
+      return (
+        <div className="menu-wrapper">
+          <button className="menu-item" onClick={()=>this.handleMenuClick("covid-19")}> Covid-19 </button>
+          <button className="menu-item" onClick={() => this.handleMenuClick("Transportation")}> Transportation </button>
+          <button className="menu-item" onClick={() => this.handleMenuClick("Projects")}> Projects</button>
+          <button className="menu-item" onClick={() => this.handleMenuClick("Lagos T.H.E.M.E.S Agenda")}> Lagos T.H.E.M.E.S Agenda</button>
+        
+        </div>
+      );
+    }
+  }
 
   renderWelcome(messages) {
 
@@ -295,13 +299,7 @@ class ChatField extends Component{
                 <div className="chat-field-flexible">
                  
                 
-                  <div className="menu-wrapper">
-                    <button className="menu-item" onClick={()=>this.handleMenuClick("covid-19")}> Covid-19 </button>
-                    <button className="menu-item" onClick={() => this.handleMenuClick("Transportation")}> Transportation </button>
-                    <button className="menu-item" onClick={() => this.handleMenuClick("Projects")}> Projects</button>
-                    <button className="menu-item" onClick={() => this.handleMenuClick("Lagos T.H.E.M.E.S Agenda")}> Lagos T.H.E.M.E.S Agenda</button>
-                  
-                  </div>
+                  {this.renderMenu(this.state.messages)}
             </div>
             
            
