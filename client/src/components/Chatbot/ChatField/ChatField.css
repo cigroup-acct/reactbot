@@ -40,7 +40,17 @@
   border-radius: 40px;
   background-color: #2a2d35;
 }
-.img-logo-small {
-  top: 10;
-  /* height: "20px"; */
+
+.menu-wrapper {
+  display: inline-block;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.menu-item {
+  margin: 0 8px 5px 0;
+  background: black;
+  border: 1px solid #525252;
 }

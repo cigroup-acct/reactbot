@@ -4,7 +4,6 @@ import './QuickReply.css';
 
 
 const QuickReply = (props) => {
-    
     if (props.reply.structValue.fields.payload) {
         return (
             <button  className="btn quick_reply_btn mr-2"

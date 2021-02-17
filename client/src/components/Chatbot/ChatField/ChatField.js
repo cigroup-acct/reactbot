@@ -22,7 +22,7 @@ class ChatField extends Component{
   constructor(props) {
     super(props);
 
-    
+    // this._handleMenuClick = this._handleMenuClick.bind(this);
     this._handleQuickRepliesPayload = this._handleQuickRepliesPayload.bind(this);
     this._handleInputKeyPress = this._handleInputKeyPress.bind(this);
     
@@ -34,7 +34,7 @@ class ChatField extends Component{
     if (cookies.get('userID') === undefined) {
       cookies.set('userID', uuid(), { path:'/' })
     }
-    console.log(cookies.get('userID'));
+    // console.log(cookies.get('userID'));
   }
 
   async df_text_query(queryText) {
@@ -118,17 +118,32 @@ class ChatField extends Component{
 
    _handleQuickRepliesPayload(payload, text) {
     this.df_text_query(text);
+   }
+  
+  handleMenuClick(text) {
+    this.df_text_query(text);
   }
 
+  // renderMenu(messages) {
+   
+  //   if (messages.length >= 1) {
+  //     return (
+  //       <div className="menu">
+          
+  //       </div>
+  //     );
+  //   }
+  // }
+
   renderWelcome(messages) {
-    console.log(messages.length);
+
     if (messages.length === 0) {
       return <Welcome />;
     }
     else {
       return(
         <div className="fixed-top">
-          <img src="https://res.cloudinary.com/jonddon/image/upload/v1613159014/Lisa/loader.gif" alt="logo" style={{ display: 'flex', justifyContent: 'end', width: '80px', margin: 'auto' }} />
+          <img src="https://res.cloudinary.com/jonddon/image/upload/v1613159014/Lisa/loader.gif" alt="logo" style={{ display: 'flex', justifyContent: 'end', width: '70px', margin: 'auto' }} />
         </div>
       )
     }
@@ -153,7 +168,7 @@ class ChatField extends Component{
 
   renderOneMessage(message, i) {
     if (message.msg && message.msg.text && message.msg.text.text) {
-      return <Message key = {i} who={message.who} text={message.msg.text.text} />;
+      return (<Message key = {i} who={message.who} text={message.msg.text.text} />);
     }
 
     else if (message.msg && message.msg.payload && message.msg.payload.fields && message.msg.payload.fields.cards) {
@@ -178,20 +193,20 @@ class ChatField extends Component{
       message.msg && message.msg.payload && message.msg.payload.fields && message.msg.payload.fields.quick_replies
     )
     {
-      return <QuickReplies
+      return (<QuickReplies
         text={message.msg.payload.fields.text ? message.msg.payload.fields.text : null}
         key={i}
         replyClick={this._handleQuickRepliesPayload}
         who={message.who}
         payload={message.msg.payload.fields.quick_replies.listValue.values}
-      />
+      />)
     }
 
 
     else if (message.msg && message.msg.payload && message.msg.payload.fields && message.msg.payload.fields.list) {
       return <div key={i}>
           
-        <div style={{ overflowY: 'scroll'}}>
+        <div style={{ overflowY: 'scroll', maxHeight:400}}>
                 
           {this.renderLists(message.msg.payload.fields.list.listValue.values)}
                 
@@ -203,7 +218,7 @@ class ChatField extends Component{
     else if (message.msg && message.msg.payload && message.msg.payload.fields && message.msg.payload.fields.simple_list) {
       return <div key={i}>
           
-        <div style={{ overflowY: 'scroll'}}>
+        <div style={{ overflowY: 'scroll', maxHeight:400}}>
                 
           {this.renderSimpleLists(message.msg.payload.fields.simple_list.listValue.values)}
                 
@@ -213,12 +228,12 @@ class ChatField extends Component{
 
     }
 
-    else if (message.msg && message.msg.payload && message.msg.payload.fields && message.msg.payload.fields.project) {
+    else if (message.msg && message.msg.payload && message.msg.payload.fields && message.msg.payload.fields.projects) {
       return <div key={i}>
           
-        <div style={{ overflowY: 'scroll'}}>
+        <div style={{ overflowY: 'scroll', maxHeight:400}}>
                 
-          {this.renderProjects(message.msg.payload.fields.project.listValue.values)}
+          {this.renderProjects(message.msg.payload.fields.projects.listValue.values)}
                 
         </div>
            
@@ -240,9 +255,9 @@ class ChatField extends Component{
     }
   }
 
-  // componentDidMount() {
+  componentDidMount() {
     
-  // }
+  }
 
   componentDidUpdate() {
     this.messagesEnd.scrollIntoView({ behaivour: 'smooth' });
@@ -267,7 +282,7 @@ class ChatField extends Component{
           {this.renderWelcome(this.state.messages)}
             
                 {this.renderMessage(this.state.messages)}
-                    <div ref={(el) => { this.messagesEnd = el;}}
+            <div ref={(el) => { this.messagesEnd = el;}}
             style={{ float: 'left', clear: 'both' }} >
             
            
@@ -280,8 +295,16 @@ class ChatField extends Component{
                 <div className="chat-field-flexible">
                  
                 
-                    
-                    </div>
+                  <div className="menu-wrapper">
+                    <button className="menu-item" onClick={()=>this.handleMenuClick("covid-19")}> Covid-19 </button>
+                    <button className="menu-item" onClick={() => this.handleMenuClick("Transportation")}> Transportation </button>
+                    <button className="menu-item" onClick={() => this.handleMenuClick("Projects")}> Projects</button>
+                    <button className="menu-item" onClick={() => this.handleMenuClick("Lagos T.H.E.M.E.S Agenda")}> Lagos T.H.E.M.E.S Agenda</button>
+                  
+                  </div>
+            </div>
+            
+           
                     <input
                         onKeyPress={ this._handleInputKeyPress}
                         className="chat-field-input"
